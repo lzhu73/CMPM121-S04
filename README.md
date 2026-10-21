@@ -27,9 +27,24 @@ The same/similar code structure exists in multiple difference instances througho
 Prevention/Refactoring:
 Pull up method - Define method used multiple times thorughout the code earlier, so that later portions of code can reference the method. 
 
-Examples: 
+Example # 1 - 
 Language: p5.js
-The line 
+
 fill(colors[get_random_color()]); 
-is repeated in multiple locations throughout the project. The line changes the fill color to a random value choo
+The line above is repeated in multiple locations throughout the project. The line changes the fill color to a random value choosen from the colors[] list. The code can be refactored by creating the following function:
+
+function set_random_color(){
+  fill(colors[get_random_color()]); 
+}
+
+Even though this change won't save any lines of code, in fact it technically adds 3 extra lines, it makes the code more readable by replacaing every instance of 
+
+fill(colors[get_random_color()]);
+
+with a simple function call:
+
+set_random_color();
+
+Additionally, if changes need to made to how a color is randomly generated, only a single function needs to be changed compared to changing every single instance of 
+fill(colors[get_random_color()]); 
 
