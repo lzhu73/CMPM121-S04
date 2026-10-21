@@ -25,7 +25,9 @@ The same/similar code structure exists in multiple difference instances througho
 
 
 Prevention/Refactoring:
-Pull up method - Define method used multiple times thorughout the code earlier, so that later portions of code can reference the method. 
+Extract Function - Extract repeating section of code from function and make it its own function elsewhere in the code.
+Slide Statements - Rearrange code so that sections related to each other are close together.
+Pull up - Define method used multiple times thorughout the code earlier, so that later portions of code can reference the method.
 
 Example # 1 - 
 Language: p5.js
