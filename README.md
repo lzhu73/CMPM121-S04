@@ -50,3 +50,41 @@ set_random_color();
 Additionally, if changes need to made to how a color is randomly generated, only a single function needs to be changed compared to changing every single instance of 
 fill(colors[get_random_color()]); 
 
+Example # 2 - 
+Language: Python
+example from https://dev.to/alexis_jean/avoid-duplicate-code-with-dry-a-simple-python-example-2ke7
+
+def calculate_rectangle_area(width, height):
+    area = width * height
+    print(f"The area of the rectangle is {area}")
+
+def calculate_square_area(side):
+    area = side * side
+    print(f"The area of the square is {area}")
+
+def calculate_triangle_area(base, height):
+    area = 0.5 * base * height
+    print(f"The area of the triangle is {area}")
+
+This group of functions each have a separate print statement that has the shape name hard coded into the print statement, which does work, but makes each statement less reusable. 
+
+The Extract Code method can be utilized by making a separate print shape statement that can be used with all three shape area functions, plus any more that need to be made in the future.
+
+Fixed version
+
+def print_area(shape, area):
+    print(f"The area of the {shape} is {area}")
+
+def calculate_rectangle_area(width, height):
+    area = width * height
+    print_area("rectangle", area)
+
+def calculate_square_area(side):
+    area = side * side
+    print_area("square", area)
+
+def calculate_triangle_area(base, height):
+    area = 0.5 * base * height
+    print_area("triangle", area)
+
+
