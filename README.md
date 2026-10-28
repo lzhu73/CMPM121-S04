@@ -78,29 +78,29 @@ Pull up - Define method used multiple times thorughout the code earlier, so that
 
 ### Example # 1 - 
 Language: p5.js
-
+```javascript
 fill(colors[get_random_color()]); 
 The line above is repeated in multiple locations throughout the project. The line changes the fill color to a random value choosen from the colors[] list. The code can be refactored by creating the following function:
 
 function set_random_color(){
   fill(colors[get_random_color()]); 
 }
-
+```
 Even though this change won't save any lines of code, in fact it technically adds 3 extra lines, it makes the code more readable by replacaing every instance of 
-
+```javascript
 fill(colors[get_random_color()]);
-
+```
 with a simple function call:
-
+```javascript
 set_random_color();
-
+```
 Additionally, if changes need to made to how a color is randomly generated, only a single function needs to be changed compared to changing every single instance of 
 fill(colors[get_random_color()]); 
 
 ### Example # 2 - 
 Language: Python
 example from https://dev.to/alexis_jean/avoid-duplicate-code-with-dry-a-simple-python-example-2ke7
-
+```python
 def calculate_rectangle_area(width, height):
     area = width * height
     print(f"The area of the rectangle is {area}")
@@ -112,13 +112,13 @@ def calculate_square_area(side):
 def calculate_triangle_area(base, height):
     area = 0.5 * base * height
     print(f"The area of the triangle is {area}")
-
+```
 This group of functions each have a separate print statement that has the shape name hard coded into the print statement, which does work, but makes each statement less reusable. 
 
 The Extract Code method can be utilized by making a separate print shape statement that can be used with all three shape area functions, plus any more that need to be made in the future.
 
 Fixed version
-
+```python
 def print_area(shape, area):
     print(f"The area of the {shape} is {area}")
 
@@ -133,5 +133,5 @@ def calculate_square_area(side):
 def calculate_triangle_area(base, height):
     area = 0.5 * base * height
     print_area("triangle", area)
-
+```
 
