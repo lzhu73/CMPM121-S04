@@ -18,13 +18,13 @@ Use global variable can prevent long parameter list but will cause another code 
 
 ### Example #1:
 Language: c++
-
+```c++
 void createCharacter(string name, int health, int attack,
                      int defense, int speed, int level,
                      int experience);
-
+```
 This function requires too many parameters which makes it hard to read and easy to make mistakes. For example, we might messed up with the parameters that are all the same type.
-
+```c++
 Fixed Version:
 struct Character {
   string name;
@@ -36,12 +36,12 @@ struct Character {
   int experience;
 };
 void createCharacter(const Character& character);
-
+```
 This makes the function easier to maintain, since we only need to pass one object instead of seven individual parameters. If we want to add more character attributes in the future, we can update the struct without changing the function's parameter list.
 
 ### Example #2
 Language: Python
-
+```python
 def calculate_invoice_total(items, region, tax_rate, shipping_cost):
     subtotal = sum(i.price * i.quantity for i in items)
     return subtotal + subtotal * tax_rate + shipping_cost
@@ -52,17 +52,18 @@ total = calculate_invoice_total(
     TAX_RATES[customer.region],
     shipping_for(order),
 )
-
+```
 tax_rate is derived from region so the caller passes the same information twice. If the caller looks up the wrong tax rate, the invoice is wrong without knowing. We need to Replace Parameter with Query and let the function look up what it needs.
 
 Fixed Version:
+```python
 def calculate_invoice_total(order):
     subtotal = sum(i.price * i.quantity for i in order.items)
     tax = subtotal * TAX_RATES[order.customer.region]
     return subtotal + tax + shipping_for(order)
 
 total = calculate_invoice_total(order)
-
+```
 This is better because 4 parameters become one and tax and shippingn lices in one place instead of being called multiple times.
 
 
