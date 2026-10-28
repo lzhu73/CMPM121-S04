@@ -77,7 +77,7 @@ Slide Statements - Rearrange code so that sections related to each other are clo
 Pull up - Define method used multiple times thorughout the code earlier, so that later portions of code can reference the method.
 
 ### Example # 1 - 
-Language: p5.js
+Language: JavaScript
 ```javascript
 fill(colors[get_random_color()]); 
 ```
