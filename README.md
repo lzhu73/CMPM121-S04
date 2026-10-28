@@ -80,8 +80,10 @@ Pull up - Define method used multiple times thorughout the code earlier, so that
 Language: p5.js
 ```javascript
 fill(colors[get_random_color()]); 
+```
 The line above is repeated in multiple locations throughout the project. The line changes the fill color to a random value choosen from the colors[] list. The code can be refactored by creating the following function:
 
+```javascript
 function set_random_color(){
   fill(colors[get_random_color()]); 
 }
