@@ -6,9 +6,9 @@ Anna Zhang
 Desi Herrerias
 Rheann Kunita
 
-###Introduction: 
+### Introduction: 
 
-###Code Smell #1: Long Parameter List
+### Code Smell #1: Long Parameter List
 A function that requires too many parameters from existing data structures. It arises by trying to pass everything needed by the function as a parameter, keep increaseing parameter list as program grows, or trying to pass data indivially instead of pass them as an object. This will cause the function hard to call with higher risk of mistakes, and low readability.
 
 Prevention/Refactoring:
@@ -16,11 +16,33 @@ Pass parameter by object instead of passing parameter indivially.
 Replace parameter with query.
 Use global variable can prevent long parameter list but will cause another code smell Global Data.
 
-Examples:
+Example #1:
+Language: c++
+
+void createCharacter(string name, int health, int attack,
+                     int defense, int speed, int level,
+                     int experience);
+
+This function requires too many parameters which makes it hard to read and easy to make mistakes. For example, we might messed up with the parameters that are all the same type.
+
+Fixed Version:
+struct Character {
+  string name;
+  int health;
+  int attack;
+  int defense;
+  int speed;
+  int level;
+  int experience;
+};
+void createCharacter(const Character& character);
+
+This makes the function easier to maintain, since we only need to pass one object instead of seven individual parameters. If we want to add more character attributes in the future, we can update the struct without changing the function's parameter list.
 
 
 
-###Code Smell #2: Duplicated Code:
+
+### Code Smell #2: Duplicated Code:
 The same/similar code structure exists in multiple difference instances throughout the code. When making structural changes, these duplicated structures need to be all altered individually. By refacotring the duplicated code into an object, function, method, etc, the code can easily be modified by making the change in only a single location rather than in multiple locations throughout the program.
 
 
