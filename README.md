@@ -9,7 +9,7 @@ Rheann Kunita
 ## Introduction: 
 
 ## Code Smell #1: Long Parameter List
-A function that requires too many parameters from existing data structures. It arises by trying to pass everything needed by the function as a parameter, increasing teh parameter list as the program grows, or trying to pass data indivially instead of passing them as an object. This will cause the function hard to call with higher risk of mistakes, low readability, and makes it harder to change.
+A function that requires too many parameters from existing data structures. It arises by trying to pass everything needed by the function as a parameter, increasing the parameter list as the program grows, or trying to pass data indivially instead of passing them as an object. This will cause the function hard to call with higher risk of mistakes, low readability, and makes it harder to change.
 
 Prevention/Refactoring:
 Pass parameter by object instead of passing parameter indivially.
@@ -40,6 +40,8 @@ void createCharacter(const Character& character);
 This makes the function easier to maintain, since we only need to pass one object instead of seven individual parameters. If we want to add more character attributes in the future, we can update the struct without changing the function's parameter list.
 
 ### Example #2
+Language: Python
+
 def calculate_invoice_total(items, region, tax_rate, shipping_cost):
     subtotal = sum(i.price * i.quantity for i in items)
     return subtotal + subtotal * tax_rate + shipping_cost
@@ -53,7 +55,7 @@ total = calculate_invoice_total(
 
 tax_rate is derived from region so the caller passes the same information twice. If the caller looks up the wrong tax rate, the invoice is wrong without knowing. We need to Replace Parameter with Query and let the function look up what it needs.
 
-Fixed:
+Fixed Version:
 def calculate_invoice_total(order):
     subtotal = sum(i.price * i.quantity for i in order.items)
     tax = subtotal * TAX_RATES[order.customer.region]
